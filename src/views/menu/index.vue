@@ -11,8 +11,8 @@
       <div class="search">
         <div class="search-from">
           <el-form label-width="80px">
-            <el-form-item label="用户名">
-              <el-input placeholder="请输入用户名"></el-input>
+            <el-form-item label="菜单">
+              <el-input placeholder="请输入菜单"></el-input>
             </el-form-item>
           </el-form>
         </div>
@@ -26,20 +26,23 @@
         </div>
       </div>
     </div>
-    <el-table border style="width: 97%">
+    <el-table border :data="menuList" style="width: 97%">
       <el-table-column type="index" label="序号" width="50"> </el-table-column>
-      <el-table-column prop="date" label="展示名称" width="120">
+      <el-table-column prop="label" label="展示名称" width="120">
       </el-table-column>
-      <el-table-column prop="name" label="文件名称" width="120"> </el-table-column>
-      <el-table-column prop="name" label="路径" width="120"> </el-table-column>
-      <el-table-column prop="name" label="前端component" width="120"> </el-table-column>
-      <el-table-column prop="name" label="唯一标识" width="120"> </el-table-column>
-      <el-table-column prop="name" label="图标" width="120">
+      <el-table-column prop="name" label="文件名称" width="120">
       </el-table-column>
-      <el-table-column prop="name" label="类型"> </el-table-column>
-      <el-table-column prop="name" label="注册时间"> </el-table-column>
-      <el-table-column prop="name" label="状态"> </el-table-column>
-      <el-table-column prop="name" label="操作"> </el-table-column>
+      <el-table-column prop="path" label="路径" width="120"> </el-table-column>
+      <el-table-column prop="component" label="前端component" width="120">
+      </el-table-column>
+      <el-table-column prop="perms" label="唯一标识" width="120">
+      </el-table-column>
+      <el-table-column prop="icon" label="图标" width="120"> </el-table-column>
+      <el-table-column prop="type" label="类型">
+      </el-table-column>
+      <el-table-column prop="updateTime" label="注册时间"> </el-table-column>
+      <el-table-column prop="type" label="状态"> </el-table-column>
+      <el-table-column label="操作"> </el-table-column>
     </el-table>
     <!-- <el-pagination
       @size-change="handleSizeChange"
@@ -54,12 +57,23 @@
 </template>
 
 <script>
+import UserApi from '../../api/user'
 export default {
   data() {
-    return {}
+    return {
+      menuList: []
+    }
   },
-  created() {},
-  methods: {},
+  created() {
+    this.getmenulist()
+  },
+  methods: {
+    async getmenulist () {
+      const response = await UserApi.getmenulist()
+      this.menuList = response
+      console.log(response)
+    }
+  },
   components: {}
 }
 </script>

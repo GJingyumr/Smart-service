@@ -10,14 +10,21 @@
     <div>
       <div class="search">
         <div class="search-from">
-          <el-form label-width="80px">
+          <el-form label-width="80px" :model="userForm">
             <el-form-item label="用户名">
-              <el-input placeholder="请输入用户名"></el-input>
+              <el-input
+                v-model="userForm.username"
+                placeholder="请输入用户名"
+              ></el-input>
             </el-form-item>
           </el-form>
         </div>
         <div class="search-button">
-          <el-button type="success" size="medium" icon="el-icon-search"
+          <el-button
+            type="success"
+            size="medium"
+            icon="el-icon-search"
+            @click="handleQueryForm"
             >查询</el-button
           >
           <el-button type="primary" size="medium" icon="el-icon-edit"
@@ -75,7 +82,12 @@ import UserApi from '../../api/user'
 export default {
   data() {
     return {
-      userList: []
+      userList: [],
+      current: 1,
+      size: 20,
+      userForm: {
+        username: ''
+      }
     }
   },
   created() {
@@ -83,9 +95,16 @@ export default {
   },
   methods: {
     async loginUserList() {
-      const response = await UserApi.getuserlist()
-      console.log(response)
+      const response = await UserApi.getuserlist({
+        current: this.current,
+        size: this.size,
+        username: this.userForm.username
+      })
+      // console.log(response)
       this.userList = response.records
+    },
+    handleQueryForm() {
+      this.loginUserList()
     }
   },
   components: {}

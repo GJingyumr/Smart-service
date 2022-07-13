@@ -31,12 +31,19 @@ const getuserInfo = () => {
   return request({ url: '/user/info', method: 'GET' })
 }
 // 获取用户列表
-const getuserlist = () => {
-  return request({ url: '/user/list', method: 'GET' })
+const getuserlist = (data) => {
+  return request({
+    url: `/user/list?current=${data.current}&size=${data.size}&username=${data.username}`,
+    method: 'GET'
+  })
 }
 // 获取角色列表
-const getrolelist = () => {
-  return request({ url: '/role/list', method: 'GET' })
+const getrolelist = (data) => {
+  return request({ url: `/role/list?current=${data.current}&size=${data.size}&name=${data.name}`, method: 'GET' })
+}
+// 获取菜单列表
+const getmenulist = () => {
+  return request({ url: '/menu/list', method: 'GET' })
 }
 export default {
   getCaptcha,
@@ -44,5 +51,6 @@ export default {
   logout,
   getuserInfo,
   getuserlist,
-  getrolelist
+  getrolelist,
+  getmenulist
 }
