@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="main-scss">
     <router-view></router-view>
   </div>
 </template>
@@ -15,4 +15,9 @@ export default {
 }
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.main-scss{
+  width: 100%;
+  background-color: white;
+}
+</style>

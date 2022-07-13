@@ -1,5 +1,7 @@
 <template>
-  <div class="">控制台</div>
+  <div class="">
+    <h1>控制台</h1>
+  </div>
 </template>
 
 <script>

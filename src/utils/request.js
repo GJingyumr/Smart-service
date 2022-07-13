@@ -1,4 +1,6 @@
 import axios from 'axios'
+import { getItem } from '../utils/storage'
+
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API,
   timeout: 5000
@@ -6,6 +8,10 @@ const service = axios.create({
 
 service.interceptors.request.use(
   (config) => {
+    const token = getItem('token')
+    if (token) {
+      config.headers.token = token
+    }
     return config
   },
   (error) => {

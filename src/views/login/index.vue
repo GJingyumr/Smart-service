@@ -110,6 +110,8 @@ export default {
             this.loginForm
           )
           console.log(response)
+          const ress = await this.$store.dispatch('user/getUserInfo')
+          console.log(ress)
           this.loadingStatus = false
           this.$router.push('/')
         })

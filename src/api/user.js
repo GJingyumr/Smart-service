@@ -7,7 +7,7 @@ const getCaptcha = () => {
     method: 'GET'
   })
 }
-
+// 登录接口
 const login = (data) => {
   return request({
     url:
@@ -22,13 +22,27 @@ const login = (data) => {
     method: 'POST'
   })
 }
-
+// 退出登录
 const logout = () => {
   return request({ url: '/logout', method: 'POST' })
 }
-
+// 获取用户信息
+const getuserInfo = () => {
+  return request({ url: '/user/info', method: 'GET' })
+}
+// 获取用户列表
+const getuserlist = () => {
+  return request({ url: '/user/list', method: 'GET' })
+}
+// 获取角色列表
+const getrolelist = () => {
+  return request({ url: '/role/list', method: 'GET' })
+}
 export default {
   getCaptcha,
   login,
-  logout
+  logout,
+  getuserInfo,
+  getuserlist,
+  getrolelist
 }

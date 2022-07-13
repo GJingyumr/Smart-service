@@ -2,6 +2,14 @@
   <div class="Header_layout">
     <div class="Header-left">
       <i class="el-icon-s-fold iconss"></i>
+      <div class="tagsview">
+        <ul>
+          <li>控制台</li>
+          <li>用户管理</li>
+          <li>角色管理</li>
+          <li>菜单管理</li>
+        </ul>
+      </div>
     </div>
     <div class="Header-right">
       <el-tooltip class="item" effect="dark" content="全屏" placement="bottom">
@@ -15,10 +23,10 @@
       >
         <i class="el-icon-circle-close icons"></i>
       </el-tooltip>
-       <el-avatar class="avatarScss"  src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
+      <el-avatar class="avatarScss" :src="username.avatar"></el-avatar>
       <el-dropdown @command="handledropdown">
         <span class="el-dropdown-link">
-          <span class="Header_title">duck</span
+          <span class="Header_title">{{ username.username }}</span
           ><i class="el-icon-arrow-down el-icon--right"></i>
         </span>
         <el-dropdown-menu slot="dropdown">
@@ -37,13 +45,17 @@ import screenfulls from 'screenfull'
 export default {
   data() {
     return {
-      token: ''
+      token: '',
+      username: ''
     }
   },
-  created() {},
+  created() {
+    this.username = JSON.parse(localStorage.getItem('userInfo'))
+    // console.log(JSON.parse(localStorage.getItem('userInfo')))
+  },
   methods: {
     // 全屏功能
-    toggleFullscreen () {
+    toggleFullscreen() {
       if (!screenfulls.isEnabled) {
         return false
       }
@@ -72,7 +84,7 @@ export default {
             type: 'success',
             message: '删除成功!'
           })
-          removeItem("token")
+          removeItem('token')
         })
         .catch(() => {
           this.$message({
@@ -96,6 +108,26 @@ export default {
   align-items: center;
   color: white;
 }
+.Header-left {
+  display: flex;
+  height: 60px;
+  align-items: center;
+  ul {
+    list-style: none;
+    display: flex;
+    li {
+      width: 90px;
+      height: 30px;
+      text-align: center;
+      border: 1px orange solid;
+      margin-left: 10px;
+      line-height: 30px;
+      color: orange;
+      background-color: white;
+      border-radius: 5px;
+    }
+  }
+}
 .Header_title {
   font-weight: bold;
   color: white;
@@ -105,20 +137,20 @@ export default {
   margin-left: 20px;
   font-size: 25px;
 }
-.iconss{
+.iconss {
   font-size: 30px;
 }
-.Header-right{
+.Header-right {
   display: flex;
   height: 60px;
   align-items: center;
 }
-.avatarScss{
-  width: 30px;
-  height: 30px;
+.avatarScss {
+  width: 40px;
+  height: 40px;
   margin: 0 20px 0 20px;
 }
 .el-icon-rank {
-  transform: rotate(20deg)
+  transform: rotate(20deg);
 }
 </style>

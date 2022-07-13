@@ -38,4 +38,8 @@ export default {
 }
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.el-menu{
+  border-right: 0;
+}
+</style>
