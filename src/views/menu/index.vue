@@ -20,7 +20,10 @@
           <el-button type="success" size="medium" icon="el-icon-search"
             >查询</el-button
           >
-          <el-button type="primary" size="medium" icon="el-icon-edit"
+          <el-button
+            type="primary"
+            size="medium"
+            icon="el-icon-edit"
             >新增</el-button
           >
         </div>
@@ -38,8 +41,7 @@
       <el-table-column prop="perms" label="唯一标识" width="120">
       </el-table-column>
       <el-table-column prop="icon" label="图标" width="120"> </el-table-column>
-      <el-table-column prop="type" label="类型">
-      </el-table-column>
+      <el-table-column prop="type" label="类型"> </el-table-column>
       <el-table-column prop="updateTime" label="注册时间"> </el-table-column>
       <el-table-column prop="type" label="状态"> </el-table-column>
       <el-table-column label="操作"> </el-table-column>
@@ -61,14 +63,15 @@ import UserApi from '../../api/user'
 export default {
   data() {
     return {
-      menuList: []
+      menuList: [],
+      dialogFormVisible: false
     }
   },
   created() {
     this.getmenulist()
   },
   methods: {
-    async getmenulist () {
+    async getmenulist() {
       const response = await UserApi.getmenulist()
       this.menuList = response
       console.log(response)

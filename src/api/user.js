@@ -37,9 +37,31 @@ const getuserlist = (data) => {
     method: 'GET'
   })
 }
+// 添加用户
+const adduser = (data) => {
+  return request({ url: 'user/add', method: 'POST', data })
+}
+// 查询单个用户信息接口
+const finduser = (id) => {
+  return request({
+    url: `user/userInfo/${id}`,
+    method: 'get'
+  })
+}
+// 更新用户接口
+const updateUser = (data) => {
+  return request({
+    url: '/user/update',
+    method: 'put',
+    data
+  })
+}
 // 获取角色列表
 const getrolelist = (data) => {
-  return request({ url: `/role/list?current=${data.current}&size=${data.size}&name=${data.name}`, method: 'GET' })
+  return request({
+    url: `/role/list?current=${data.current}&size=${data.size}&name=${data.name}`,
+    method: 'GET'
+  })
 }
 // 获取菜单列表
 const getmenulist = () => {
@@ -52,5 +74,8 @@ export default {
   getuserInfo,
   getuserlist,
   getrolelist,
-  getmenulist
+  getmenulist,
+  adduser,
+  finduser,
+  updateUser
 }

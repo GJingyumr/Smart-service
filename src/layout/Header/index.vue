@@ -4,10 +4,10 @@
       <i class="el-icon-s-fold iconss"></i>
       <div class="tagsview">
         <ul>
-          <li>控制台</li>
-          <li>用户管理</li>
-          <li>角色管理</li>
-          <li>菜单管理</li>
+          <li>控制台 <i class="el-icon-close"></i> </li>
+          <li>用户管理 <i class="el-icon-close"></i></li>
+          <li>角色管理 <i class="el-icon-close"></i></li>
+          <li>菜单管理 <i class="el-icon-close"></i></li>
         </ul>
       </div>
     </div>
@@ -69,7 +69,9 @@ export default {
     },
     async handleRemove() {
       const res = await UserApi.logout()
+      console.log(123)
       console.log(res)
+      console.log(UserApi.logout())
       this.$router.push('/login')
     },
     handleInfo() {
@@ -116,7 +118,7 @@ export default {
     list-style: none;
     display: flex;
     li {
-      width: 90px;
+      width: 100px;
       height: 30px;
       text-align: center;
       border: 1px orange solid;
